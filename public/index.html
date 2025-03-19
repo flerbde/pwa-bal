@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        if (localStorage.getItem("authenticated") !== "true") {
+            window.location.href = "login.html"; // Redirection vers la connexion
+        }
+    </script>
+    <script src="js/connection.js" defer></script>
+    <link rel="manifest" href="manifest.json">
+    <script src="js/app.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+ <!-- 📱 Icônes pour iOS -->
+ <link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
+
+ <!-- 🎨 Couleur de la barre du haut (Safari) -->
+ <meta name="apple-mobile-web-app-capable" content="yes">
+ <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+ <meta name="apple-mobile-web-app-title" content="Bal de Promo">
+
+</head>
+<body>
+    <div id="offline-message" class="offline hidden">⚠️ Pas de connexion, impossible de se connecter</div>
+    <div class="logo-container">
+        <img src="assets/logo.png" alt="Logo" class="logo">
+    </div>
+    <div class="container">
+        <h1>🎉 Bienvenue sur l'application de gestion du bal !🎉</h1>
+        <button onclick="location.href='vente.html'" class="btn">💳 Vente</button>
+        <button onclick="location.href='scanner_acces.html'" class="btn"> Contrôle de l'accès - Entrée</button>
+        <button onclick="location.href='scanner_conso.html'" class="btn"> Gestion des consommations - Bar</button>
+        <button onclick="window.location.href='interface_admin.html'" class="btn">🔑 Interface Admin</button>
+        <button id="logout-btn" class="btn logout">Déconnexion</button>
+
+    </div>
+    <script>
+        document.getElementById("logout-btn").addEventListener("click", () => {
+            localStorage.removeItem("authenticated"); // Supprime l'authentification
+            window.location.href = "login.html"; // Redirige vers la page de connexion
+        });
+    
+        // Vérifie si l'utilisateur est bien authentifié, sinon le renvoie au login
+        if (!localStorage.getItem("authenticated")) {
+            window.location.href = "login.html";
+        }
+    </script>
+    
+</body>
+</html>
